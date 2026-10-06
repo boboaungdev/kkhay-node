@@ -1,0 +1,61 @@
+{
+  "name": "kkhay",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Official Node.js and TypeScript SDK for K Khay Sovereign Crypto Payment Gateway",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "node --test test/sdk.test.js",
+    "dev": "tsup --watch",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "keywords": [
+    "kkhay",
+    "crypto",
+    "payments",
+    "payment-gateway",
+    "merchant",
+    "web3",
+    "non-custodial",
+    "usdt",
+    "usdc",
+    "bnb",
+    "eth",
+    "evm",
+    "checkout",
+    "invoice"
+  ],
+  "author": "K Khay",
+  "license": "MIT",
+  "homepage": "https://kkhay.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boboaungdev/kkhay-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/boboaungdev/kkhay-sdk/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  }
+}
