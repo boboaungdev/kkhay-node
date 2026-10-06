@@ -5,7 +5,7 @@
 **Official Node.js & TypeScript SDK for the K Khay Non-Custodial Crypto Payment Gateway**
 
 [![npm version](https://img.shields.io/npm/v/kkhay.svg?style=flat-square&color=10b981)](https://www.npmjs.com/package/kkhay)
-[![CI](https://github.com/boboaungdev/kkhay-sdk/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/boboaungdev/kkhay-sdk/actions/workflows/ci.yml)
+[![CI](https://github.com/boboaungdev/kkhay-node/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/boboaungdev/kkhay-node/actions/workflows/ci.yml)
 [![npm downloads](https://img.shields.io/npm/dm/kkhay.svg?style=flat-square)](https://www.npmjs.com/package/kkhay)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178c6.svg?style=flat-square)](https://www.typescriptlang.org/)
@@ -262,7 +262,7 @@ try {
 
 - 📖 **API Documentation**: [kkhay.com/merchant/api-keys](https://kkhay.com/merchant/api-keys)
 - 🖥️ **Merchant Dashboard**: [kkhay.com/merchant](https://kkhay.com/merchant)
-- 🐛 **Issue Tracker**: [GitHub Issues](https://github.com/boboaungdev/kkhay-sdk/issues)
+- 🐛 **Issue Tracker**: [GitHub Issues](https://github.com/boboaungdev/kkhay-node/issues)
 
 ---
 

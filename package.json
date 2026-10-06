@@ -70,10 +70,10 @@
   "homepage": "https://kkhay.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/boboaungdev/kkhay-sdk.git"
+    "url": "git+https://github.com/boboaungdev/kkhay-node.git"
   },
   "bugs": {
-    "url": "https://github.com/boboaungdev/kkhay-sdk/issues"
+    "url": "https://github.com/boboaungdev/kkhay-node/issues"
   },
   "engines": {
     "node": ">=18.0.0"
