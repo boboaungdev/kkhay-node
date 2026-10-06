@@ -5,6 +5,8 @@
 **Official Node.js & TypeScript SDK for the K Khay Non-Custodial Crypto Payment Gateway**
 
 [![npm version](https://img.shields.io/npm/v/kkhay.svg?style=flat-square&color=10b981)](https://www.npmjs.com/package/kkhay)
+[![CI](https://github.com/boboaungdev/kkhay-sdk/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/boboaungdev/kkhay-sdk/actions/workflows/ci.yml)
+[![npm downloads](https://img.shields.io/npm/dm/kkhay.svg?style=flat-square)](https://www.npmjs.com/package/kkhay)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178c6.svg?style=flat-square)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18.0.0-green.svg?style=flat-square)](https://nodejs.org/)
@@ -38,6 +40,9 @@ pnpm add kkhay
 
 # yarn
 yarn add kkhay
+
+# bun
+bun add kkhay
 ```
 
 ---
@@ -49,7 +54,11 @@ yarn add kkhay
 Generate your API key in the [K Khay Merchant Dashboard](https://kkhay.com/merchant/api-keys).
 
 ```typescript
+// ES Modules & TypeScript
 import { KkhayClient } from "kkhay"
+
+// CommonJS
+const { KkhayClient } = require("kkhay")
 
 const kkhay = new KkhayClient({
   apiKey: process.env.KKHAY_API_KEY!, // starts with "kkhay_live_"
@@ -246,6 +255,14 @@ try {
 | **Base** | `ETH` | `USDC` |
 | **Arbitrum One** | `ETH` | `USDT`, `USDC` |
 | **Ethereum** | `ETH` | `USDT`, `USDC` |
+
+---
+
+## 💬 Support & Issues
+
+- 📖 **API Documentation**: [kkhay.com/merchant/api-keys](https://kkhay.com/merchant/api-keys)
+- 🖥️ **Merchant Dashboard**: [kkhay.com/merchant](https://kkhay.com/merchant)
+- 🐛 **Issue Tracker**: [GitHub Issues](https://github.com/boboaungdev/kkhay-sdk/issues)
 
 ---
 

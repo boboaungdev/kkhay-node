@@ -8,9 +8,14 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     }
   },
   "files": [
@@ -20,32 +25,52 @@
   ],
   "scripts": {
     "build": "tsup",
-    "test": "node --test test/sdk.test.js",
+    "test": "node --test test/sdk.test.js test/cjs.test.cjs",
     "dev": "tsup --watch",
     "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
     "kkhay",
     "crypto",
+    "cryptocurrency",
     "payments",
     "payment-gateway",
+    "payment-processor",
+    "crypto-sdk",
+    "sdk",
     "merchant",
     "web3",
+    "blockchain",
     "non-custodial",
+    "invoice",
+    "checkout",
+    "webhook",
+    "ipn",
+    "stablecoin",
     "usdt",
     "usdc",
     "bnb",
     "eth",
+    "polygon",
+    "arbitrum",
+    "base",
+    "bsc",
     "evm",
-    "checkout",
-    "invoice"
+    "typescript",
+    "web3-sdk",
+    "web3",
+    "web3-payments",
+    "web3-payment-gateway",
+    "boboaungdev",
+    "boboaung",
+    "bobo"
   ],
   "author": "K Khay",
   "license": "MIT",
   "homepage": "https://kkhay.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/boboaungdev/kkhay-sdk.git"
+    "url": "git+https://github.com/boboaungdev/kkhay-sdk.git"
   },
   "bugs": {
     "url": "https://github.com/boboaungdev/kkhay-sdk/issues"
@@ -57,5 +82,11 @@
     "@types/node": "^26.6.4",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2"
+  },
+  "overrides": {
+    "esbuild": "^0.28.2"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
   }
 }
