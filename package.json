@@ -1,6 +1,6 @@
 {
   "name": "kkhay",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "description": "Official Node.js and TypeScript SDK for K Khay Sovereign Crypto Payment Gateway",
   "main": "./dist/index.cjs",
