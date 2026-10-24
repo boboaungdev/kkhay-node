@@ -1,4 +1,4 @@
-import crypto from "node:crypto"
+import { createHmac, timingSafeEqual } from "node:crypto"
 import type { KkhayWebhookEvent } from "./types"
 
 /**
@@ -6,7 +6,7 @@ import type { KkhayWebhookEvent } from "./types"
  *
  * @param payload The raw string body or JSON object received in the webhook request
  * @param signature The signature from the `x-kkhay-signature` HTTP header
- * @param ipnSecret Your merchant IPN Secret Key (from K Khay Dashboard -> Webhooks)
+ * @param webhookSecret Your gateway Webhook / IPN Secret Key (from K Khay Gateway Dashboard -> Webhooks)
  * @returns boolean `true` if the signature is authentic and untampered
  *
  * @example
@@ -16,21 +16,21 @@ import type { KkhayWebhookEvent } from "./types"
  * const isValid = verifyWebhookSignature(
  *   rawBody,
  *   req.headers["x-kkhay-signature"],
- *   process.env.KKHAY_IPN_SECRET!
+ *   process.env.KKHAY_WEBHOOK_SECRET!
  * )
  * ```
  */
 export function verifyWebhookSignature(
   payload: string | Record<string, unknown>,
   signature: string | null | undefined,
-  ipnSecret: string
+  webhookSecret: string
 ): boolean {
-  if (!signature || !ipnSecret) return false
+  if (!signature || !webhookSecret) return false
 
   const rawBody = typeof payload === "string" ? payload : JSON.stringify(payload)
 
   try {
-    const computed = crypto.createHmac("sha256", ipnSecret).update(rawBody).digest("hex")
+    const computed = createHmac("sha256", webhookSecret).update(rawBody).digest("hex")
     const computedBuffer = Buffer.from(computed, "utf8")
     const signatureBuffer = Buffer.from(signature.trim(), "utf8")
 
@@ -38,7 +38,7 @@ export function verifyWebhookSignature(
       return false
     }
 
-    return crypto.timingSafeEqual(computedBuffer, signatureBuffer)
+    return timingSafeEqual(computedBuffer, signatureBuffer)
   } catch {
     return false
   }
@@ -50,23 +50,25 @@ export function verifyWebhookSignature(
  *
  * @param rawBody The raw request body string
  * @param signature The `x-kkhay-signature` header value
- * @param ipnSecret Your merchant IPN Secret Key
+ * @param webhookSecret Your gateway Webhook / IPN Secret Key
  * @returns KkhayWebhookEvent Typed parsed webhook event
  */
 export function parseWebhookEvent(
   rawBody: string,
   signature: string | null | undefined,
-  ipnSecret: string
+  webhookSecret: string
 ): KkhayWebhookEvent {
-  const isValid = verifyWebhookSignature(rawBody, signature, ipnSecret)
+  const isValid = verifyWebhookSignature(rawBody, signature, webhookSecret)
   if (!isValid) {
-    throw new Error("Invalid K Khay webhook signature: Request rejected.")
+    throw new Error("Invalid or untrusted K Khay webhook signature (x-kkhay-signature mismatch).")
   }
 
   try {
-    return JSON.parse(rawBody) as KkhayWebhookEvent
+    const parsed = JSON.parse(rawBody)
+    return parsed as KkhayWebhookEvent
   } catch (err) {
-    throw new Error(`Failed to parse webhook JSON payload: ${err instanceof Error ? err.message : String(err)}`)
+    throw new Error(
+      `Failed to parse K Khay webhook body as JSON: ${err instanceof Error ? err.message : "Malformed payload"}`
+    )
   }
 }
-
